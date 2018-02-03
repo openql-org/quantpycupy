@@ -33,4 +33,4 @@ Upload to PyPI
 Confirmation
 ------------
 
-    $ pip --no-cache-dir install --upgrade quantpycython
+    $ pip --no-cache-dir install --upgrade quantpycupy
