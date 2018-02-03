@@ -1,0 +1,3 @@
+[submodule "quantpy"]
+	path = quantpy
+	url = https://github.com/openql-org/quantpy.git
