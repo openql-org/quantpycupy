@@ -36,5 +36,3 @@ def test_hadamard_loop(printFlag=False):
 
         print("average:\t{0}x{1},\t{2} [sec]".format(n, lc, ss/lc))
         assert ss/lc < ts
-
-test_hadamard_loop()
