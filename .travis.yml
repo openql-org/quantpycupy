@@ -12,6 +12,7 @@ install:
   - cd cupy
   - python setup.py sdist --cupy-no-cuda
   - cd ../
+  - rm -r ./cupy
 before_script: # configure a headless display to test plot generation
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
