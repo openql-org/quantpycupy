@@ -6,7 +6,12 @@ python:
 # command to install dependencies
 install:
   - pip install quantpy
-  - pip install --install-option="--cupy-no-cuda" cupy 
+  - pip install -U pip wheel
+  - pip install cython
+  - git clone https://github.com/cupy/cupy.git
+  - cd cupy
+  - python setup.py sdist --cupy-no-cuda
+  - cd ../
 before_script: # configure a headless display to test plot generation
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
