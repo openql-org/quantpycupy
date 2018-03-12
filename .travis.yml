@@ -11,7 +11,7 @@ install:
   - pip install fastrlock
   - git clone https://github.com/cupy/cupy.git
   - cd cupy
-  - python setup.py sdist --cupy-no-cuda
+  - python setup.py install --cupy-no-cuda
   - cd ../
 before_script: # configure a headless display to test plot generation
   - "export DISPLAY=:99.0"
