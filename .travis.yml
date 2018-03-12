@@ -10,7 +10,7 @@ install:
   - pip install cython
   - git clone https://github.com/cupy/cupy.git
   - cd cupy
-  - python setup.py sdist --cupy-no-cuda
+  - python setup.py install --cupy-no-cuda
   - cd ../
   - rm -rf ./cupy
 before_script: # configure a headless display to test plot generation
