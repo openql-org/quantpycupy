@@ -55,7 +55,7 @@ class CupyExecutor(BaseQuantumExecutor):
 
             gateOps = operation["name"]
 
-            if not self.simulator.can_simulate_gate(gateOps):
+            if (not self.simulator.can_simulate_gate(gateOps)) and (not gateOps == "measure"):
                 print(" !!! {} is not supported !!!".format(gateOps))
                 print(operation)
                 continue

@@ -203,7 +203,7 @@ class KernelList:
     if(i&mask) y = 0;
     else y = x;
     """,
-    name = "MeasZ0",
+    name = "M0",
     )
 
     ker_MeasZ1 = cp.ElementwiseKernel(
@@ -216,7 +216,7 @@ class KernelList:
     if(i&mask) y = x;
     else y = 0;
     """,
-    name = "MeasZ1",
+    name = "M1",
     )
 
     ker_U = cp.ElementwiseKernel(

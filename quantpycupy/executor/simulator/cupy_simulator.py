@@ -6,7 +6,7 @@ class of quantum circuit simulator
 import numpy as np
 
 import cupy as cp
-from quantpycupy.simulator.cupy_kernel import KernelList as qcgate
+from quantpycupy.executor.simulator.cupy_kernel import KernelList as qcgate
 
 class CupySimulator():
     def __init__(self,verbose=False):
@@ -26,7 +26,8 @@ class CupySimulator():
         self.state[0]=1.
         self.nstate = cp.zeros_like(self.state)
 
-    def apply(self,gate,ind1,ind2=None,ind3=None,theta=None,update=True):
+    def apply(self,gate,target,control=None,theta=None,param=None,update=True):
+    #def apply(self,gate,ind1,ind2=None,ind3=None,theta=None,update=True):
         """
         apply quantum gate to the qubit(s)
 
@@ -37,6 +38,8 @@ class CupySimulator():
         @param theta : rotation angle, used in rotation gate (default: None)
         @update : The calculated state is placed in buffer-state. If update is Ture, swap current state with buffer after calculation. (default: True)
         """
+        ind1 = target
+        ind2 = control
         gate = self.__getGateInstance(gate)
         gateName = gate.name
 
@@ -78,8 +81,8 @@ class CupySimulator():
         elif(gate in [qcgate.ker_U]):
             if(not self.__bound(ind1)): raise IndexError("ind1 is out of range in "+gateName)
             #print(theta)
-            self.nstate = gate(self.state,ind1,theta[0],theta[1],theta[2],self.nstate)
-            if(self.verbose): print("Generic unitary ({},{},{}) on {}-th qubit with {}".format(theta[0],theta[1],theta[2],ind1,gateName))
+            self.nstate = gate(self.state,ind1,param[0],param[1],param[2],self.nstate)
+            if(self.verbose): print("Generic unitary ({},{},{}) on {}-th qubit with {}".format(param[0],param[1],param[2],ind1,gateName))
             self.currentTrace = None
         else:
             raise Exception("not implemented {}".format())
@@ -169,4 +172,4 @@ class CupySimulator():
         return gate
 
     def can_simulate_gate(self,gateName):
-        return gateName in allGateName
+        return gateName in qcgate.allGateName 
